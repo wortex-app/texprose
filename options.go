@@ -12,6 +12,9 @@ type CodeLanguage string
 const (
 	LaTeX  CodeLanguage = "latex"
 	BibTeX CodeLanguage = "bibtex"
+	// Rsweave (.Rnw) documents: LaTeX with R code chunks (<<...>>= ... @),
+	// which are skipped. Supported because the ported builder supports it.
+	Rsweave CodeLanguage = "rsweave"
 )
 
 // Action describes how a command or environment is handled, using the same
