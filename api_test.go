@@ -78,7 +78,7 @@ func TestMagicCommentEnabled(t *testing.T) {
 }
 
 func TestBabelUsePackage(t *testing.T) {
-	code := "$x$\n\\usepackage[french]{babel}\n$y$\n"
+	code := "$y$\n\\usepackage[french]{babel}\n$z$\n"
 	annotation := annotateOrFail(t, code, Options{})
 	assertReconstruction(t, code, annotation)
 
@@ -89,7 +89,7 @@ func TestBabelUsePackage(t *testing.T) {
 }
 
 func TestBabelSelectLanguage(t *testing.T) {
-	code := "$x$ \\selectlanguage{french} $y$\n"
+	code := "$y$ \\selectlanguage{french} $z$\n"
 	annotation := annotateOrFail(t, code, Options{})
 	assertReconstruction(t, code, annotation)
 
