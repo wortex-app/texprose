@@ -523,7 +523,7 @@ func TestSegmentMerging(t *testing.T) {
 // Upstream merges simple whitespace into a single text part by substituting
 // " " for a lone "\n" inside a text run. This port instead emits the newline
 // as markup interpreted as " " so that segments always reconstruct the source
-// byte-for-byte (deviation 1 in the plan).
+// byte-for-byte (see builder.go, addTextAsMarkup).
 func TestSimpleWhitespace(t *testing.T) {
 	annotation := annotateOrFail(t, "This is a test\nOver multiple\n\nLines.", Options{})
 

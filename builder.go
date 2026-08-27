@@ -254,7 +254,7 @@ func (b *builder) addMarkupIA(markup, interpretAs string) {
 
 // addTextAsMarkup emits source as markup interpreted as shown while applying
 // exactly the state effects of addText(shown). Used for the lone-newline
-// substitution (deviation 1): upstream adds the text " " for a source "\n",
+// substitution: upstream adds the text " " for a source "\n",
 // which would break byte-exact source reconstruction.
 func (b *builder) addTextAsMarkup(source, shown string) {
 	if b.curKind == kindText {
@@ -386,7 +386,7 @@ func (b *builder) addCode(code string) {
 		if b.pos <= lastPos {
 			// Upstream logs and skips the character, losing it from the
 			// output. Emit it as markup instead so that segments always
-			// reconstruct the source (deviation 2).
+			// reconstruct the source.
 			b.pos = lastPos
 			b.addMarkup(b.code[lastPos : lastPos+size])
 		}
@@ -548,7 +548,7 @@ func (b *builder) processBackslash() {
 	case (command == "\\text" || command == "\\intertext") &&
 		b.pos+len(command) < len(b.code) && b.code[b.pos+len(command)] == '{':
 		// Upstream appends command+"{" unconditionally; requiring the brace
-		// here preserves source reconstruction (deviation 3). Without a
+		// here preserves source reconstruction. Without a
 		// brace the command falls through to the generic branch below.
 		b.pushMode(modeInlineText)
 		interpretAs := ""
@@ -562,7 +562,7 @@ func (b *builder) processBackslash() {
 			b.addMarkupIA(verbCommand, b.generateDummy())
 		}
 		// An unterminated \verb leaves pos unchanged; the loop guard in
-		// addCode consumes the backslash as markup (deviation 2).
+		// addCode consumes the backslash as markup.
 
 	default:
 		b.processGenericCommand(command)
@@ -811,7 +811,7 @@ func (b *builder) processWhitespace() {
 		case b.lastSpace == "" && whitespace == " ":
 			b.addText(" ")
 		case b.lastSpace == "" && whitespace == "\n":
-			// Upstream: addText(" ") (deviation 1).
+			// Upstream: addText(" "); see addTextAsMarkup.
 			b.addTextAsMarkup("\n", " ")
 		case b.lastSpace == "" && whitespace == "\n\n":
 			b.addText("\n\n")

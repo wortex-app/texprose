@@ -7,7 +7,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 // Ported from ltex-ls-plus: LatexFragmentizerTest.kt and
-// BibtexFragmentizerTest.kt, adapted for deviation 4: upstream additionally
+// BibtexFragmentizerTest.kt, adapted: upstream additionally
 // emits overlapping re-check fragments (\footnote/\todo contents, babel
 // inline commands/environments), which this port does not produce.
 

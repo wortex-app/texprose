@@ -9,7 +9,7 @@
 // Ported from ltex-ls-plus: parsing/RegexCodeFragmentizer.kt,
 // parsing/latex/LatexFragmentizer.kt and settings/SettingsParser.kt.
 //
-// Deviation 4 (see the plan document): upstream additionally emits
+// Deviation from upstream: upstream additionally emits
 // *duplicate* fragments for content that should be re-checked under other
 // settings (\footnote/\todo contents, babel inline commands and babel
 // environments). A flat annotation cannot check the same source span twice,
